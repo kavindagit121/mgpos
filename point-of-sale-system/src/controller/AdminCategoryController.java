@@ -93,8 +93,8 @@ public class AdminCategoryController {
         col_item_name = new TableColumn<Category, String>("Name");
         col_item_date_created = new TableColumn<Category, String>("Date Created");
         
-        col_item_id.setMinWidth(150.0);
-        col_item_name.setMinWidth(280.0);
+        col_item_id.setMinWidth(200.0);
+        col_item_name.setMinWidth(300.0);
         col_item_date_created.setMinWidth(200.0);
         
         

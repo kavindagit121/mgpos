@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import com.lowagie.text.pdf.PdfWriter;
+import net.sf.jasperreports.engine.*;
 import org.apache.log4j.BasicConfigurator;
 
 import common.Common;
@@ -22,11 +24,6 @@ import model.DailyTable;
 import model.DayItemTable;
 import model.ProductItem;
 import model.Sale;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
@@ -190,8 +187,11 @@ public class ReportGenerator {
 
 		//JasperCompileManager.compileReportToFile( new File("").getAbsolutePath() + "/src/jaspertemplate/voucherprint.jrxml", new File("").getAbsolutePath() + "/src/jaspertemplate/voucherprint.jasper");
 		//JasperCompileManager.compileReportToFile(new File("").getAbsolutePath() + "/src/jaspertemplate/voucherprint.jrxml", new File("").getAbsolutePath() + "/src/jaspertemplate/voucherprint.jasper");
+		
+//		JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(new File("").getAbsolutePath() +"/src/jaspertemplate/voucherprint.jasper");
 
-		JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(new File("").getAbsolutePath() +"/src/jaspertemplate/voucherprint.jasper");
+		JasperReport jasperReport = JasperCompileManager.compileReport(new File("").getAbsolutePath() +"/src/jaspertemplate/voucherprint.jrxml");
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JREmptyDataSource());
 
 		//JasperDesign jasperDesign = JRXmlLoader.load(new File("").getAbsolutePath() + "/src/jaspertemplate/voucherprint.jasper");
 		//System.out.println("file is : " + new File("").getAbsolutePath() + "/src/jaspertemplate/voucherprint.jasper");
@@ -200,8 +200,10 @@ public class ReportGenerator {
 		// File("/Users/tylersai/Desktop/jaspervoucher.pdf"));
 
 		//JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JREmptyDataSource());
+//		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JREmptyDataSource());
 		// JasperExportManager.exportReportToPdfStream(jasperPrint, outputfile);
+
+
 
 		// PDF Exportor.
 		JRPdfExporter exporter = new JRPdfExporter();
@@ -211,8 +213,10 @@ public class ReportGenerator {
 		exporter.setExporterInput(exporterInput);
 
 		// ExporterOutput
-		OutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(
-				"../Desktop/UCSMPOS/Voucher.pdf");
+		/*OutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(
+				"../Desktop/UCSMPOS/Voucher.pdf");*/
+		OutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput("/UCSMPOS/Voucher.pdf");
+
 		// Output
 		exporter.setExporterOutput(exporterOutput);
 
@@ -220,6 +224,8 @@ public class ReportGenerator {
 		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
 		exporter.setConfiguration(configuration);
 		exporter.exportReport();
+		configuration.setPermissions(PdfWriter.AllowCopy | PdfWriter.AllowPrinting);
+
 
 		JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
 		jasperViewer.setVisible(true);
@@ -510,30 +516,23 @@ public class ReportGenerator {
 		param.put("promotion",""+promotion );
 
 		// Make sure the output directory exists.
-		File outDir = new File("/generatedReport/UCSMPOS");
+		File outDir = new File("/UCSMPOS");
 		outDir.mkdirs();
 
-		JasperReport jasperReport = null;
-		try {
-			String path = getClass().getResource("../jaspertemplate/daily_report.jrxml").getPath();
-			System.out.println("Path : " + path);
-			jasperReport = (JasperReport) JRLoader.loadObjectFromFile(path);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-
+//		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(new File(new File("").getAbsolutePath() +"/src/jaspertemplate/daily_report.jasper"));
+		
 		//JasperDesign jasperDesign = JRXmlLoader.load(new File("").getAbsolutePath() + "/src/jaspertemplate/daily_report.jasper");
 		System.out.println("file is : " + new File("").getAbsolutePath() + "/src/jaspertemplate/daily_report.jasper");
 
 		/* Using compiled version(.jasper) of Jasper report to generate PDF */
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JREmptyDataSource());
+//        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JREmptyDataSource());
 
 		// OutputStream outputfile = new FileOutputStream(new
 		// File("/Users/tylersai/Desktop/jaspervoucher.pdf"));
 
-		//JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-		//JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JREmptyDataSource());
-		// JasperExportManager.exportReportToPdfStream(jasperPrint, outputfile);
+		JasperReport jasperReport = JasperCompileManager.compileReport(new File("").getAbsolutePath() +"/src/jaspertemplate/daily_report.jrxml");
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JREmptyDataSource());
+//		 JasperExportManager.exportReportToPdfStream(jasperPrint, outputfile);
 
 		// PDF Exportor.
 		JRPdfExporter exporter = new JRPdfExporter();
@@ -543,13 +542,13 @@ public class ReportGenerator {
 		exporter.setExporterInput(exporterInput);
 
 		// ExporterOutput
-		OutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(
-				"../Desktop/UCSMPOS/daily_report.pdf");
+		OutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput("/UCSMPOS/daily_report.pdf");
 		// Output
 		exporter.setExporterOutput(exporterOutput);
 
 		//
 		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		configuration.setPermissions(PdfWriter.AllowCopy | PdfWriter.AllowPrinting);
 		exporter.setConfiguration(configuration);
 		exporter.exportReport();
 
@@ -606,17 +605,17 @@ public class ReportGenerator {
 
 
 		// Make sure the output directory exists.
-		File outDir = new File("../Desktop/UCSMPOS");
+		File outDir = new File("/UCSMPOS");
 		outDir.mkdirs();
 
 		//JasperDesign jasperDesign = JRXmlLoader.load(new File("").getAbsolutePath() + "/src/jaspertemplate/popular_item_report.jasper");
 	//	System.out.println("file is : " + new File("").getAbsolutePath() + "/src/jaspertemplate/popular_item_report.jasper");
 
-		JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(new File("").getAbsolutePath() +"/src/jaspertemplate/popular_item_report.jasper");
+		//JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(new File("").getAbsolutePath() +"/src/jaspertemplate/popular_item_report.jasper");
 		// OutputStream outputfile = new FileOutputStream(new
 		// File("/Users/tylersai/Desktop/jaspervoucher.pdf"));
 
-		//JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+		JasperReport jasperReport = JasperCompileManager.compileReport(new File("").getAbsolutePath() +"/src/jaspertemplate/popular_item_report.jrxml");
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JREmptyDataSource());
 		// JasperExportManager.exportReportToPdfStream(jasperPrint, outputfile);
 
@@ -629,19 +628,20 @@ public class ReportGenerator {
 
 		// ExporterOutput
 		OutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(
-				"../Desktop/UCSMPOS/Popular_item.pdf");
+				"/UCSMPOS/Popular_item.pdf");
 		// Output
 		exporter.setExporterOutput(exporterOutput);
 
 		//
 		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		configuration.setPermissions(PdfWriter.AllowCopy | PdfWriter.AllowPrinting);
 		exporter.setConfiguration(configuration);
 		exporter.exportReport();
 
 		JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
 		jasperViewer.setVisible(true);
 		jasperViewer.setFitPageZoomRatio();
-		jasperViewer.setTitle("UCSM POS System: Printing service");
+		jasperViewer.setTitle("MG POS System: Printing service");
 	}
 
 
@@ -1011,19 +1011,19 @@ public class ReportGenerator {
 		param.put("categorysale","Item Sale" );
 
 		// Make sure the output directory exists.
-		File outDir = new File("../Desktop/UCSMPOS");
+		File outDir = new File("/UCSMPOS");
 		outDir.mkdirs();
 
-
-		JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(new File("").getAbsolutePath() +"/src/jaspertemplate/monthly_report.jasper");
-
+		
+		//JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(new File("").getAbsolutePath() +"/src/jaspertemplate/monthly_report.jasper");
+		
 		//JasperDesign jasperDesign = JRXmlLoader.load(new File("").getAbsolutePath() + "/src/jaspertemplate/monthly_report.jasper");
-	//	System.out.println("file is : " + new File("").getAbsolutePath() + "/src/jaspertemplate/monthly_report.jasper");
+		System.out.println("file is : " + new File("").getAbsolutePath() + "/src/jaspertemplate/monthly_report.jasper");
 
 		// OutputStream outputfile = new FileOutputStream(new
 		// File("/Users/tylersai/Desktop/jaspervoucher.pdf"));
 
-		//JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+		JasperReport jasperReport = JasperCompileManager.compileReport(new File("").getAbsolutePath() +"/src/jaspertemplate/monthly_report.jrxml");
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JREmptyDataSource());
 		// JasperExportManager.exportReportToPdfStream(jasperPrint, outputfile);
 
@@ -1036,20 +1036,21 @@ public class ReportGenerator {
 
 		// ExporterOutput
 		OutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(
-				"../Desktop/UCSMPOS/monthly_report.pdf");
+				"/UCSMPOS/monthly_report.pdf");
 		// Output
 		exporter.setExporterOutput(exporterOutput);
 
 		//
 		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		configuration.setPermissions(PdfWriter.AllowCopy | PdfWriter.AllowPrinting);
 		exporter.setConfiguration(configuration);
 		exporter.exportReport();
 
 		JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
 		jasperViewer.setVisible(true);
 		jasperViewer.setFitPageZoomRatio();
-		jasperViewer.setTitle("UCSM POS System: Printing service");
-
-
+		jasperViewer.setTitle("MG POS System: Printing service");
+		
+		
 	}
 }

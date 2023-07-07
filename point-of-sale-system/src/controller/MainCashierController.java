@@ -251,11 +251,11 @@ public class MainCashierController {
 		col_item_barcode = new TableColumn<ProductItem, String>("Barcode");
 		col_item_stock = new TableColumn<ProductItem, String>("Stock");
 
-		col_item_name.setMinWidth(200.0);
-		col_item_category.setMinWidth(160.0);
-		col_item_price.setMinWidth(100.0);
-		col_item_barcode.setMinWidth(220.0);
-		col_item_stock.setMinWidth(90.0);
+		col_item_name.setMinWidth(240.0);
+		col_item_category.setMinWidth(240.0);
+		col_item_price.setMinWidth(200.0);
+		col_item_barcode.setMinWidth(230.0);
+		col_item_stock.setMinWidth(200.0);
 
 		col_item_name.setStyle("-fx-font-size: 18");
 		col_item_category.setStyle("-fx-font-size: 18");
@@ -280,12 +280,12 @@ public class MainCashierController {
 		col_purchase_discount = new TableColumn<Sale, String>("Discount");
 		col_purchase_totalamount = new TableColumn<Sale, String>("TotalAmount");
 
-		col_purchase_barcode.setMinWidth(120.0);
-		col_purchase_name.setMinWidth(90.0);
-		col_purchase_price.setMinWidth(60.0);
-		col_purchase_quantity.setMinWidth(25.0);
-		col_purchase_discount.setMinWidth(25.0);
-		col_purchase_totalamount.setMinWidth(120.0);
+		col_purchase_barcode.setMinWidth(150.0);
+		col_purchase_name.setMinWidth(150.0);
+		col_purchase_price.setMinWidth(150.0);
+		col_purchase_quantity.setMinWidth(60.0);
+		col_purchase_discount.setMinWidth(100.0);
+		col_purchase_totalamount.setMinWidth(150.0);
 
 		col_purchase_barcode.setStyle("-fx-font-size: 15");
 		col_purchase_name.setStyle("-fx-font-size: 15");

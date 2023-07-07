@@ -285,7 +285,7 @@ public class CardPayController {
     	//MainCashierController.clearsaletableitems();
     	((Stage)bt_pay.getScene().getWindow()).close();
     	//alert
-    	Alert trancompleteal = new Alert(AlertType.INFORMATION, "Transaction Complete! "+payamount+" kyats has reduced from the card. Click Ok to print voucher.");
+    	Alert trancompleteal = new Alert(AlertType.INFORMATION, "Transaction Complete! "+payamount+" rupees has reduced from the card. Click Ok to print voucher.");
     	trancompleteal.showAndWait();
     
     	

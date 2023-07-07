@@ -84,7 +84,7 @@ public class MainAdminController {
 
 		AnchorPane pane = null;
 		try {
-			pane = FXMLLoader.load(getClass().getResource("/ui/admin_product.fxml"));
+			pane = FXMLLoader.load(getClass().getResource("/ui/admin_view_chart.fxml"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,7 +92,7 @@ public class MainAdminController {
 		common_pane.getChildren().add(pane);
 
 		// bt_product.setStyle("-fx-background-color : #6e6e6e");
-		bt_product.setDisable(true);
+		bt_chart.setDisable(true);
 	}
 
 	// for screen transaction from login to admin panel
@@ -102,13 +102,12 @@ public class MainAdminController {
 		public void start(Stage primaryStage) throws Exception {
 			Parent root = FXMLLoader.load(getClass().getResource("/ui/Page_login.fxml"));
 
-			Scene scene = new Scene(root, 1320, 700);
-			scene.getRoot().setStyle("-fx-font-family: 'serif'");
+			Scene scene = new Scene(root, 2000,1000);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Cashier");
-			//primaryStage.sizeToScene();
-			primaryStage.setResizable(false);
-			primaryStage.setMaximized(false);
+//			primaryStage.sizeToScene();
+			primaryStage.setResizable(true);
+			primaryStage.setMaximized(true);
 			primaryStage.show();
 		}
 	}

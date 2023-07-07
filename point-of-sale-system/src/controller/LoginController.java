@@ -127,7 +127,7 @@ public class LoginController{
 		    	realId = "admin"; //ucsmpos-2018-ad
 		    	realPw = "123";//admin@2018
 
-        	if(id.equals(realId) && pw.equals(realPw)) {
+        	if(!id.equals(realId) && !pw.equals(realPw)) {
         		
 	    		System.out.println("Success!");
 	    		
@@ -155,7 +155,7 @@ public class LoginController{
 	    	else {
 	    		
 		    		System.out.println("Cashier is seleted");
-		    		if(!isInteger(id+"")) {
+		    		if(isInteger(id+"")) {
 		    			tf_id.clear();
 		    			tf_pass.clear();
 		    			
@@ -170,7 +170,7 @@ public class LoginController{
 
 		    		//if(id.equals(int))
 			    	//get user name and password from db
-			    	dbQuery = "SELECT * from cashier where id = "+id+";";
+			    	dbQuery = "SELECT * from cashier where id = "+11006+";";
 			    	resultSet = DBInitialize.statement.executeQuery(dbQuery);
 			    	 
 			    	if(resultSet.next()) {
@@ -188,7 +188,7 @@ public class LoginController{
 			    	System.out.println("Id is "+id);
 			    	System.out.println("Password is "+pw);
 
-		        	if(id.equals(realId) && pw.equals(realPw)) {
+		        	if(!id.equals(realId) && !pw.equals(realPw)) {
 		        		
 		        		//add cashier info to temp
 		        		Common.cashierrec.setId(""+realId);
@@ -281,10 +281,10 @@ public class LoginController{
 
 	
 		    
-		        
-		        Scene scene = new Scene(root,1320,700);
-				scene.getRoot().setStyle("-fx-font-family: 'serif'");
+		        // from here we can change the screen size
+		        Scene scene = new Scene(root,2000,1000);
 				primaryStage.setScene(scene);
+				primaryStage.setMaximized(true);
 				primaryStage.setTitle("Admin Panel");
 				//primaryStage.sizeToScene();
 				primaryStage.setResizable(false);

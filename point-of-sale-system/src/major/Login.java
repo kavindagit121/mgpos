@@ -20,15 +20,14 @@ public class Login extends Application{
 		//FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/Page_login.fxml"));
 		
 	//	LoginController logincontroller = root.getController();
-
-
-
-		Scene scene = new Scene( root, 1320,700);
-		scene.getRoot().setStyle("-fx-font-family: 'serif'");
+		 
+		
+		Scene scene = new Scene(((Parent) root.load()), 2000,1000);
 		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setMaximized(false);
-		primaryStage.setTitle("MG POS System");
+		//make these 2 to false to go with default sizing
+		primaryStage.setResizable(true);
+		primaryStage.setMaximized(true);
+		primaryStage.setTitle("");
 		primaryStage.getIcons().add(new Image("graphic/poslogorect.png"));
 		primaryStage.show();
 		

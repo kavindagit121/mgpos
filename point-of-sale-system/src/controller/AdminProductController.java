@@ -136,14 +136,14 @@ public class AdminProductController {
 		col_item_stock = new TableColumn<ProductItem, String>("Stock");
 		col_item_expire_date = new TableColumn<ProductItem, String>("Expired Date");
 
-		col_item_barcode.setMinWidth(190.0);
+		col_item_barcode.setMinWidth(200.0);
 		col_item_name.setMinWidth(200.0);
-		col_item_categroy.setMinWidth(160.0);
-		col_item_price.setMinWidth(90.0);
-		col_item_supplier.setMinWidth(170.0);
-		col_item_dateadded.setMinWidth(120.0);
-		col_item_stock.setMinWidth(90.0);
-		col_item_expire_date.setMinWidth(140.0);
+		col_item_categroy.setMinWidth(200.0);
+		col_item_price.setMinWidth(200.0);
+		col_item_supplier.setMinWidth(200.0);
+		col_item_dateadded.setMinWidth(200.0);
+		col_item_stock.setMinWidth(200.0);
+		col_item_expire_date.setMinWidth(200.0);
 
 		col_item_barcode.setStyle("-fx-font-size: 18");
 		col_item_name.setStyle("-fx-font-size: 18");

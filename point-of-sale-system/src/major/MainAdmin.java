@@ -17,8 +17,7 @@ public class MainAdmin extends Application{
 	//	LoginController logincontroller = root.getController();
 		 
 		
-		Scene scene = new Scene(((Parent) root.load()),850,500);
-		scene.getRoot().setStyle("-fx-font-family: 'serif'");
+		Scene scene = new Scene(((Parent) root.load()),1600, 1000);
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(true);
 		primaryStage.setMaximized(true);

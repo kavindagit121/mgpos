@@ -142,17 +142,17 @@ public class AdminViewChartController {
 		barChart.setAnimated(true);
 		barChart.animatedProperty();
 
-		barChart.setPrefHeight(440);
-		barChart.setMinHeight(440);
-		barChart.setMaxHeight(440);
+		barChart.setPrefHeight(490);
+		barChart.setMinHeight(490);
+		barChart.setMaxHeight(490);
 
-		barChart.setPrefWidth(470);
-		barChart.setMinWidth(470);
-		barChart.setMaxWidth(470);
+		barChart.setPrefWidth(520);
+		barChart.setMinWidth(520);
+		barChart.setMaxWidth(520);
 
-		barChart.setPrefSize(405, 290);
-		barChart.setMinSize(405, 290);
-		barChart.setMaxSize(405, 290);
+		barChart.setPrefSize(455, 340);
+		barChart.setMinSize(455, 340);
+		barChart.setMaxSize(455, 340);
 
 		ch_customer_age.getChildren().add(barChart);
 		System.out.println("Customer age chart is generated ...... ");
@@ -333,17 +333,17 @@ public class AdminViewChartController {
 		// Setting the title of the Pie chart
 		pieChart.setTitle("Category Sales");
 
-		pieChart.setPrefHeight(400);
-		pieChart.setMinHeight(400);
-		pieChart.setMaxHeight(400);
+		pieChart.setPrefHeight(600);
+		pieChart.setMinHeight(600);
+		pieChart.setMaxHeight(600);
 
-		pieChart.setPrefWidth(300);
-		pieChart.setMinWidth(300);
-		pieChart.setMaxWidth(300);
+		pieChart.setPrefWidth(500);
+		pieChart.setMinWidth(500);
+		pieChart.setMaxWidth(500);
 
-		pieChart.setPrefSize(420, 300);
-		pieChart.setMinSize(420, 300);
-		pieChart.setMaxSize(420, 300);
+		pieChart.setPrefSize(520, 400);
+		pieChart.setMinSize(520, 400);
+		pieChart.setMaxSize(520, 400);
 
 		// setting the direction to arrange the data
 		pieChart.setClockwise(true);

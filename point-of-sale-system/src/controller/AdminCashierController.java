@@ -452,7 +452,7 @@ public class AdminCashierController {
     	tb_cashier.refresh();
     	
     	//show alert
-    	Alert al = new Alert(AlertType.INFORMATION, "Item added!");
+    	Alert al = new Alert(AlertType.INFORMATION, "New Record Added!");
 		al.showAndWait();
     	}//end of try
     	catch(Exception ex) {
@@ -534,7 +534,7 @@ public class AdminCashierController {
     	tb_cashier.refresh();
     	
     	//show alert
-    	Alert al = new Alert(AlertType.INFORMATION, "Item updated!");
+    	Alert al = new Alert(AlertType.INFORMATION, "Record Updated!");
 		al.showAndWait();
     }//end of if
     	}
